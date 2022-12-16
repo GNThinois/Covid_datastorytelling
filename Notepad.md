@@ -13,4 +13,4 @@ Déploiement + UI (sélection pays, etc..)
 
 
 
-Pays choix multiples = USA, France, Japon, Cameroon, Brésil
+Pays choix multiples = United States, France, Brazil, Japan, Cameroon, China
