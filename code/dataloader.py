@@ -1,25 +1,18 @@
-import tkinter as tk
+import pandas as pd
 
-def show_text(value):
-    if value == "Option 1":
-        print("You selected option 1")
-    elif value == "Option 2":
-        print("You selected option 2")
-    else:
-        print("Invalid option selected")
+path1 = '../data/owid-covid-data.csv'
+path2 = '../data/vaccination-data.csv'
+path3 = '../data/WHO-COVID-19-global-data.csv'
 
-# Create the root window
-root = tk.Tk()
+def cov_vac_display(name_of_country):
+    covid_DF = pd.read_csv(path1)
+    vacc_DF = pd.read_csv(path3)
+    list_of_country_covid = covid_DF.location.unique()
+    list_of_country_vacc = vacc_DF.Country.unique()
+    #print(list_of_country_covid.size)
+    #print(list_of_country_vacc.size)
+    tmp = set(list_of_country_covid) & set(list_of_country_vacc)
+    if 'United states' in tmp :
+        print(tmp)
 
-# Create a variable to hold the selected value
-selected_value = tk.StringVar(root)
-
-# Create the picklist
-picklist = tk.OptionMenu(root, selected_value, "Option 1", "Option 2")
-picklist.pack()
-
-# Bind the show_text function to the picklist
-selected_value.trace("w", lambda *args: show_text(selected_value.get()))
-
-# Start the main event loop
-root.mainloop()
+cov_vac_display('aa')

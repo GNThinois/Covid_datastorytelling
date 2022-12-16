@@ -1,4 +1,5 @@
 import tkinter as tk
+import dataloader
 
 def show_text(value):
     if value == "Option 1":
