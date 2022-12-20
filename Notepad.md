@@ -13,4 +13,6 @@ Déploiement + UI (sélection pays, etc..)
 
 
 
-Pays choix multiples = United States, France, Brazil, Japan, Cameroon, China
+Pays choix multiples = ["United States", "France", "Brazil", "Japan", "Cameroon", "China"]
+
+join

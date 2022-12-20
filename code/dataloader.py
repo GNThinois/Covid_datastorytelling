@@ -27,8 +27,18 @@ def cov_vac_display(name_of_country):
 def display_vacc_covid_graph(country):
     df = pd.read_csv(path1)
     country_DF = df[df['location'] == country]
-    data = pd.DataFrame(country_DF, columns=["date", "new_cases_per_million", "new_vaccinations_smoothed_per_million"]).fillna(0)
-    data.plot(x="date", y=["new_cases_per_million", "new_vaccinations_smoothed_per_million"],
-        kind="line", figsize=(10, 10))
+    data = pd.DataFrame(country_DF, columns=["date", "new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"]).fillna(0)
+    data.plot(x="date", y=["new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"],
+        kind="line", figsize=(10, 10), title=country)
+    print(country)
 
-display_vacc_covid_graph('France')
+
+#x = input('Pays à afficher:')
+#x = 'France'
+#display_vacc_covid_graph(x)
+
+
+
+
+
+

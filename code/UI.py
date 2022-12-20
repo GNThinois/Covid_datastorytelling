@@ -2,12 +2,8 @@ import tkinter as tk
 import dataloader
 
 def show_text(value):
-    if value == "Option 1":
-        print("You selected option 1")
-    elif value == "Option 2":
-        print("You selected option 2")
-    else:
-        print("Invalid option selected")
+    print(value)
+    dataloader.display_vacc_covid_graph(value)
 
 # Create the root window
 root = tk.Tk()
@@ -16,7 +12,7 @@ root = tk.Tk()
 selected_value = tk.StringVar(root)
 
 # Create the picklist
-picklist = tk.OptionMenu(root, selected_value, "Option 1", "Option 2")
+picklist = tk.OptionMenu(root, selected_value, "United States", "France", "Brazil", "Japan", "Cameroon", "China")
 picklist.pack()
 
 # Bind the show_text function to the picklist
