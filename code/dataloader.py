@@ -38,7 +38,3 @@ def display_vacc_covid_graph(country):
 #display_vacc_covid_graph(x)
 
 
-
-
-
-
