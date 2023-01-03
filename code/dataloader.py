@@ -19,7 +19,7 @@ def cov_vac_display(name_of_country):
         country_covid_DF = covid_DF[covid_DF['location'] == name_of_country]
         country_vacc_DF = vacc_DF[vacc_DF['Country'] == name_of_country]
         joined_DF = country_covid_DF.set_index('date').join(country_vacc_DF.set_index('Date_reported'))
-        print(joined_DF.columns)
+        return joined_DF
     else:
         print('Not in df')
 
@@ -30,7 +30,7 @@ def display_vacc_covid_graph(country):
     data = pd.DataFrame(country_DF, columns=["date", "new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"]).fillna(0)
     data.plot(x="date", y=["new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"],
         kind="line", figsize=(10, 10), title=country)
-    print(country)
+    print(data)
 
 
 #x = input('Pays à afficher:')
@@ -38,3 +38,6 @@ def display_vacc_covid_graph(country):
 #display_vacc_covid_graph(x)
 
 
+# data = cov_vac_display('France')
+# data = pd.DataFrame(data, columns=["date", "new_cases"]).fillna(0)
+# print(data)
