@@ -30,10 +30,13 @@ city = st.sidebar.multiselect(
 df_selection = vacc_DF.query(
     "Country == @city"
 )
-# st.table(df_selection)
+
+#### lockdown and it's effect on new cases #####
+
+# getting the data frame beased on the country selected
 df = pd.DataFrame(df_selection, columns=["Date_reported", "New_cases"]).fillna(0)
-# .reset_index(drop=True)
-# st.table(df.head(50))
+
+
 df['Date_reported'] = pd.to_datetime(df['Date_reported'],format='%d/%m/%Y')
 lockdown['Start date'] = pd.to_datetime(lockdown['Start date'])
 lockdown['End date'] = pd.to_datetime(lockdown['End date'])
@@ -41,11 +44,8 @@ lockdown['End date'] = pd.to_datetime(lockdown['End date'])
 # .dt.strftime('%d/%m/%Y')
 
 # Group the data by month and cumulate the 'New_cases' column       
-# df['year'] = df['Date_reported'].dt.year.astype(int)
-# df['month'] = df['Date_reported'].dt.month.astype(int)
-# left_column, right_column = st.columns(2)
-# st.line_chart(df)
-print(len(df))
+
+
 fig=px.line(df.head(700),x='Date_reported',y='New_cases',
         title="<b> lockdown and it's effect on new cases</b>",
         color_discrete_sequence=["#0083B8"] * len(df.head(700)),
@@ -82,6 +82,20 @@ fig.add_trace(go.Scatter(x=lockdown['End date'], mode="markers"))
 # )
 
 st.plotly_chart(fig, use_container_width=True)
+
+#### Covid STATS ######
+covid = data.display_vacc_covid_graph(city[0])
+
+fig2=px.line(covid.head(700),x='date',y=["new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"],
+        title="<b> lCovid STATS</b>",
+        color_discrete_sequence=["#0083B8"] * len(covid.head(700)),
+    )
+
+
+
+st.plotly_chart(fig2, use_container_width=True)
+
+
 st.stop()
 # st.table(df['month'])
 df_monthly = df.groupby(['month','year'])['New_cases'].sum()

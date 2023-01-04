@@ -30,7 +30,8 @@ def display_vacc_covid_graph(country):
     data = pd.DataFrame(country_DF, columns=["date", "new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"]).fillna(0)
     data.plot(x="date", y=["new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"],
         kind="line", figsize=(10, 10), title=country)
-    print(data)
+    # print(data)
+    return data
 
 
 #x = input('Pays à afficher:')
