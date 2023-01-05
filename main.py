@@ -189,9 +189,9 @@ def covid_data_menu():
 
 
 def vacc_tab():
-    st.title("Impact of vaccination on COVD.")
+    st.title("Relation entre vaccins et nombre de cas.")
     option = st.selectbox(
-    'What country would you like to display ?',
+    'Quel pays afficher ?',
     ("United States", "France", "Brazil", "Japan", "Cameroon", "China"), index=1)
     st.plotly_chart(dataloader.display_vacc_covid_graph(option))
     st.text("Intuitivement, si on part de l'hypothèse que le vaccin est efficace, ou bien même si l'effet placébo est suffisant, \nil existe une corrélation entre le taux de vaccination et le nombre de cas.Cependant, il y a une multitude d'autres facteurs et il est impossible de conclure que la vaccination seule est l'acteur principal.")
@@ -218,7 +218,7 @@ def confine_tab():
     city = st.sidebar.selectbox(
         "Select the City:",
         options=vacc_DF.Country.unique(),
-        # default='France',
+        index=72,
     )
     df_selection = vacc_DF.query(
         "Country == @city"
@@ -240,7 +240,7 @@ def confine_tab():
 
 
     fig=px.line(df.head(700),x='Date_reported',y='New_cases',
-            title="<b> lockdown and it's effect on new cases</b>",
+            title="<b> Efficacité des confinements sur les nouveaux cas.</b>",
             color_discrete_sequence=["#0083B8"] * len(df.head(700)),
         )
     fig.update_xaxes(rangeslider_visible=True)
@@ -297,10 +297,10 @@ def dvlp_tab():
 
 def main():
     config()
-    st.sidebar.subheader("COVID-19 DASHBOARD")
-    menu = ["COVID-19 DATA","Effet des vaccins sur le COVID", "Efficacité des confinements","Taux de chomage", "Indice de développement"]
+    st.sidebar.subheader("Tableau de bord COVID-19")
+    menu = ["Données COVID-19","Effet des vaccins sur le COVID", "Efficacité des confinements","Taux de chomage", "Indice de développement"]
     choice = st.sidebar.selectbox("", menu)
-    if (choice == "COVID-19 DATA") :
+    if (choice == "Données COVID-19") :
         covid_data_menu()
     elif (choice == "Effet des vaccins sur le COVID") :
         vacc_tab() 
