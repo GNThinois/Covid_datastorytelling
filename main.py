@@ -272,13 +272,15 @@ def confine_tab():
     st.plotly_chart(fig, use_container_width=True)
     
 def chomage_tab():
+    st.title("Taux de chomage par pays (en %)")
     chomage = pd.read_csv(dataloader.path4,parse_dates=True)
     chomage.set_index('Country Name',inplace = True)
     chomage_t=chomage.T
-    fig=px.line( chomage_t[["United Kingdom", "France", "India","South Africa"]])
-        # title="<b> taux de chomage </b>",)
+    fig=px.line( chomage_t[["United Kingdom", "France", "India","South Africa"]],
+        title="<b>A travers ce graphique nous souhaitons étudier les effects du covid-19 sur l'économie et plus précisement sur le taux de chomage</b>")
         # color_discrete_sequence=["#0083B8"] * len(covid.head(700)),
     st.plotly_chart(fig, use_container_width=True)
+    st.text("oui.")
 
     # fig=px.line(chomage,x='Date_reported',y='New_cases',
     #         title="<b> lockdown and it's effect on new cases</b>",
