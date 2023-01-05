@@ -182,7 +182,7 @@ def covid_data_menu():
     except ConnectionError as e:
         st.error("There is a connection error please retry later 😥")
 
-
+#Sous tab avec sélecteur du pays à afficher
 def vacc_tab():
     st.title("Relation entre vaccins et nombre de cas.")
     option = st.selectbox(
@@ -290,6 +290,7 @@ def chomage_tab():
     #         color_discrete_sequence=["#0083B8"] * len(chomage),
     #     )
 
+#Sous tab avec sélecteur de la donnée à afficher
 def dvlp_tab():
     st.title("Nombre de morts en fonction de l'indice de développement.")
     option = st.selectbox(
@@ -297,6 +298,7 @@ def dvlp_tab():
     ("life_expectancy", "human_development_index", "population_density", "median_age", "aged_65_older", "aged_70_older", "gdp_per_capita"))
     st.plotly_chart(dataloader.dvlp_index(option))
     st.text("L'indice de développement humain (IDH) correspond à un indice composé calculé chaque année par le PNUD afin d'évaluer\nle niveau de développement des pays en se fondant non pas sur des données strictement économiques, \nmais sur la qualité de vie de leurs ressortissants.")
+
 
 def main():
     config()
