@@ -189,9 +189,9 @@ def covid_data_menu():
 
 
 def vacc_tab():
-    st.title("Impact of vaccination on COVD.")
+    st.title("Relation entre vaccins et nombre de cas.")
     option = st.selectbox(
-    'What country would you like to display ?',
+    'Quel pays afficher ?',
     ("United States", "France", "Brazil", "Japan", "Cameroon", "China"), index=1)
     st.plotly_chart(dataloader.display_vacc_covid_graph(option))
     st.text("Intuitivement, si on part de l'hypothèse que le vaccin est efficace, ou bien même si l'effet placébo est suffisant, \nil existe une corrélation entre le taux de vaccination et le nombre de cas.Cependant, il y a une multitude d'autres facteurs et il est impossible de conclure que la vaccination seule est l'acteur principal.")
@@ -240,7 +240,7 @@ def confine_tab():
 
 
     fig=px.line(df.head(700),x='Date_reported',y='New_cases',
-            title="<b>Efficacite des confinement sur les nouveaux cas </b>",
+            title="<b>Efficacite des confinement sur les nouveaux cas de covid </b>",
             color_discrete_sequence=["#0083B8"] * len(df.head(700)),
         )
     fig.update_xaxes(rangeslider_visible=True)
