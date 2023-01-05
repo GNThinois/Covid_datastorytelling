@@ -80,7 +80,7 @@ def covid_data_menu():
             url = "https://disease.sh/v3/covid-19/countries"
             response = requests.get(url)
             countries = [i.get("country") for i in response.json()]
-            option = st.selectbox('please select country?', (countries), help="Please select country")
+            option = st.selectbox('please select country?', (countries), help="Please select country", index=71)
 
 
         except ConnectionError:
@@ -192,9 +192,9 @@ def vacc_tab():
     st.title("Impact of vaccination on COVD.")
     option = st.selectbox(
     'What country would you like to display ?',
-    ("United States", "France", "Brazil", "Japan", "Cameroon", "China"))
+    ("United States", "France", "Brazil", "Japan", "Cameroon", "China"), index=1)
     st.plotly_chart(dataloader.display_vacc_covid_graph(option))
-    st.text("Even though most country implemented some type of vaccination, the effect seems to vary from one to another.")
+    st.text("Intuitivement, si on part de l'hypothèse que le vaccin est efficace, ou bien même si l'effet placébo est suffisant, \nil existe une corrélation entre le taux de vaccination et le nombre de cas.Cependant, il y a une multitude d'autres facteurs et il est impossible de conclure que la vaccination seule est l'acteur principal.")
     st.text("source : OWID (Our World In Data)")
     
 
