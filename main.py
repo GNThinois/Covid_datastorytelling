@@ -293,6 +293,7 @@ def chomage_tab():
 def dvlp_tab():
     st.title("Nombre de morts en fonction de l'indice de développement.")
     st.plotly_chart(dataloader.dvlp_index())
+    st.text("L'indice de développement humain (IDH) correspond à un indice composé calculé chaque année par le PNUD afin d'évaluer\nle niveau de développement des pays en se fondant non pas sur des données strictement économiques, \nmais sur la qualité de vie de leurs ressortissants.")
 
 def main():
     config()
