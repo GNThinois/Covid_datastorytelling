@@ -195,8 +195,84 @@ def vacc_tab():
     st.plotly_chart(dataloader.display_vacc_covid_graph(option))
 
 def confine_tab():
-    st.title("Effectiveness of confining")
+    st.title("l'impact de confinement")
+    fig = go.Figure()
+
+    lock = [
+        {"Lockdown": "Lockdown 1", "Start date": "March 17, 2020", "End date": "May 11, 2020"},
+        {"Lockdown": "Lockdown 2", "Start date": "October 30, 2020", "End date": "December 15, 2020"},
+        {"Lockdown": "Lockdown 3", "Start date": "April 3, 2021", "End date": "May 2, 2021"}
+    ]
+
+    lockdown = pd.DataFrame(lock)
+    vacc_DF = pd.read_csv(dataloader.path3,parse_dates=True)
+
+    # print(vacc_DF.Country.loc['France'])
+
+    # ---- SIDEBAR ----
+    st.sidebar.header("Please Filter Here:")
+    city = st.sidebar.selectbox(
+        "Select the City:",
+        options=vacc_DF.Country.unique(),
+        # default='France',
+    )
+    df_selection = vacc_DF.query(
+        "Country == @city"
+    )
+
+    #### lockdown and it's effect on new cases #####
+
+    # getting the data frame beased on the country selected
+    df = pd.DataFrame(df_selection, columns=["Date_reported", "New_cases"]).fillna(0)
+
+
+    df['Date_reported'] = pd.to_datetime(df['Date_reported'],format='%d/%m/%Y')
+    lockdown['Start date'] = pd.to_datetime(lockdown['Start date'])
+    lockdown['End date'] = pd.to_datetime(lockdown['End date'])
+
+    # .dt.strftime('%d/%m/%Y')
+
+    # Group the data by month and cumulate the 'New_cases' column       
+
+
+    fig=px.line(df.head(700),x='Date_reported',y='New_cases',
+            title="<b> lockdown and it's effect on new cases</b>",
+            color_discrete_sequence=["#0083B8"] * len(df.head(700)),
+        )
+    fig.update_xaxes(rangeslider_visible=True)
+
+    fig.add_vrect(
+        x0=lockdown.loc[0]['Start date'],x1=lockdown.loc[0]['End date'],
+        fillcolor="violet", opacity=0.5,
+        layer="below", line_width=0,
+        annotation_text="Confinement 1",
+    )
+    fig.add_vrect(
+        x0=lockdown.loc[1]['Start date'],x1=lockdown.loc[1]['End date'],
+        fillcolor="violet", opacity=0.5,
+        layer="below", line_width=0,
+        annotation_text="Confinement 2",
+        
+    )
+    fig.add_vrect(
+        x0=lockdown.loc[2]['Start date'],x1=lockdown.loc[2]['End date'],
+        fillcolor="violet", opacity=0.5,
+        layer="below", line_width=0,
+        annotation_text="Confinement 3",
+    )
+    fig.add_trace(go.Scatter(x=lockdown['Start date'], mode="markers"))
+    fig.add_trace(go.Scatter(x=lockdown['End date'], mode="markers"))
+
+
+    # fig.update_layout(
+    #     xaxis=dict(tickmode="linear"),  
+    #     plot_bgcolor="rgba(0,0,0,0)",
+    #     yaxis=(dict(showgrid=False)),
+    # )
+
+    st.plotly_chart(fig, use_container_width=True)
     
+
 
 def main():
     config()
@@ -207,8 +283,8 @@ def main():
         covid_data_menu()
     elif (choice == "Impact of vaccination") :
         vacc_tab() 
-    else :
-        confine_tab
+    elif (choice == "Effectiveness of confining") :
+        confine_tab()
 
 
 if __name__ == '__main__':
