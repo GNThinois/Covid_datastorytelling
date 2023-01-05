@@ -240,7 +240,7 @@ def confine_tab():
 
 
     fig=px.line(df.head(700),x='Date_reported',y='New_cases',
-            title="<b> lockdown and it's effect on new cases</b>",
+            title="<b>Efficacite des confinement sur les nouveaux cas </b>",
             color_discrete_sequence=["#0083B8"] * len(df.head(700)),
         )
     fig.update_xaxes(rangeslider_visible=True)
