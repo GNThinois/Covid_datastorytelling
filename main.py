@@ -218,7 +218,7 @@ def confine_tab():
     city = st.sidebar.selectbox(
         "Select the City:",
         options=vacc_DF.Country.unique(),
-        # default='France',
+        index=72,
     )
     df_selection = vacc_DF.query(
         "Country == @city"
@@ -240,7 +240,7 @@ def confine_tab():
 
 
     fig=px.line(df.head(700),x='Date_reported',y='New_cases',
-            title="<b>Efficacite des confinement sur les nouveaux cas de covid </b>",
+            title="<b> Efficacité des confinements sur les nouveaux cas.</b>",
             color_discrete_sequence=["#0083B8"] * len(df.head(700)),
         )
     fig.update_xaxes(rangeslider_visible=True)
@@ -292,15 +292,18 @@ def chomage_tab():
 
 def dvlp_tab():
     st.title("Nombre de morts en fonction de l'indice de développement.")
-    st.plotly_chart(dataloader.dvlp_index())
+    option = st.selectbox(
+    'Quel indicateur à utiliser ?',
+    ("life_expectancy", "human_development_index", "population_density", "median_age", "aged_65_older", "aged_70_older", "gdp_per_capita"))
+    st.plotly_chart(dataloader.dvlp_index(option))
     st.text("L'indice de développement humain (IDH) correspond à un indice composé calculé chaque année par le PNUD afin d'évaluer\nle niveau de développement des pays en se fondant non pas sur des données strictement économiques, \nmais sur la qualité de vie de leurs ressortissants.")
 
 def main():
     config()
-    st.sidebar.subheader("COVID-19 DASHBOARD")
-    menu = ["COVID-19 DATA","Effet des vaccins sur le COVID", "Efficacité des confinements","Taux de chomage", "Indice de développement"]
+    st.sidebar.subheader("Tableau de bord COVID-19")
+    menu = ["Données COVID-19","Effet des vaccins sur le COVID", "Efficacité des confinements","Taux de chomage", "Autres indicateurs"]
     choice = st.sidebar.selectbox("", menu)
-    if (choice == "COVID-19 DATA") :
+    if (choice == "Données COVID-19") :
         covid_data_menu()
     elif (choice == "Effet des vaccins sur le COVID") :
         vacc_tab() 
@@ -308,7 +311,7 @@ def main():
         confine_tab()
     elif (choice == "Taux de chomage") :
         chomage_tab()
-    elif (choice == "Indice de développement"):
+    elif (choice == "Autres indicateurs"):
         dvlp_tab()
 
 
