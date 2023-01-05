@@ -42,7 +42,7 @@ def dvlp_index():
     global_DF = df[df['date'] == "2022-12-07"]
     data = pd.DataFrame(global_DF, columns=["date", "location", "total_deaths_per_million", "human_development_index"])
     data = data.dropna()
-    fig = px.scatter(data, x="human_development_index", y=["total_deaths_per_million"])
+    fig = px.scatter(data, x="human_development_index", y=["total_deaths_per_million"], color="human_development_index")
     return fig
 
 #dvlp_index()

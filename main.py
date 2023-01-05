@@ -69,7 +69,7 @@ def list_of_countries():
 
 
 def covid_data_menu():
-    st.subheader('Covid Data Menu')
+    st.subheader('Menu présentation des data')
     col1, col2, col3 = st.columns([4, 4, 4])
     with col1:
         st.text_input(label="Last Updated", value=str(datetime.now().strftime("%m/%d/%Y, %H:%M:%S")), disabled=True)
@@ -196,7 +196,7 @@ def vacc_tab():
     st.plotly_chart(dataloader.display_vacc_covid_graph(option))
     st.text("Even though most country implemented some type of vaccination, the effect seems to vary from one to another.")
     st.text("source : OWID (Our World In Data)")
-    st.plotly_chart(dataloader.dvlp_index)
+    
 
 def confine_tab():
     st.title("l'impact de confinement")
@@ -290,21 +290,25 @@ def chomage_tab():
     #         color_discrete_sequence=["#0083B8"] * len(chomage),
     #     )
 
-
+def dvlp_tab():
+    st.title("Nombre de morts en fonction de l'indice de développement.")
+    st.plotly_chart(dataloader.dvlp_index())
 
 def main():
     config()
     st.sidebar.subheader("COVID-19 DASHBOARD")
-    menu = ["COVID-19 DATA","Impact of vaccination", "Effectiveness of confining","Taux de chomage"]
+    menu = ["COVID-19 DATA","Effet des vaccins sur le COVID", "Efficacité des confinements","Taux de chomage", "Indice de développement"]
     choice = st.sidebar.selectbox("", menu)
     if (choice == "COVID-19 DATA") :
         covid_data_menu()
-    elif (choice == "Impact of vaccination") :
+    elif (choice == "Effet des vaccins sur le COVID") :
         vacc_tab() 
-    elif (choice == "Effectiveness of confining") :
+    elif (choice == "Efficacité des confinements") :
         confine_tab()
     elif (choice == "Taux de chomage") :
         chomage_tab()
+    elif (choice == "Indice de développement"):
+        dvlp_tab()
 
 
 if __name__ == '__main__':
