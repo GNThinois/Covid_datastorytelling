@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Apr 29 00:40:13 2021
 
-@author: Ronald Nyasha Kanyepi
-@email : kanyepironald@gmail.com
-"""
 import os
 from datetime import datetime
 
