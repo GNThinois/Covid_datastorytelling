@@ -282,7 +282,7 @@ def chomage_tab():
     chomage.set_index('Country Name',inplace = True)
     chomage_t=chomage.T
     fig=px.line( chomage_t[["United Kingdom", "France", "India","South Africa"]],
-        title="<b> taux de chomage </b>")
+        title="<b>A travers ce graphique nous souhaitons étudier les effects du covid-19 sur l'économie et plus précisement sur le taux de chomage</b>")
         # color_discrete_sequence=["#0083B8"] * len(covid.head(700)),
     st.plotly_chart(fig, use_container_width=True)
 
