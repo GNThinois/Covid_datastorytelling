@@ -194,7 +194,7 @@ def vacc_tab():
     'What country would you like to display ?',
     ("United States", "France", "Brazil", "Japan", "Cameroon", "China"))
     st.plotly_chart(dataloader.display_vacc_covid_graph(option))
-    st.text("Even though most country implemented some type of vaccination, the effect seems to vary from one to another.")
+    st.text("Intuitivement, si on part de l'hypothèse que le vaccin est efficace, ou bien même si l'effet placébo est suffisant, \nil existe une corrélation entre le taux de vaccination et le nombre de cas.Cependant, il y a une multitude d'autres facteurs et \nil est impossible de conclure que la vaccination seule est l'acteur principal.")
     st.text("source : OWID (Our World In Data)")
     
 
