@@ -37,12 +37,12 @@ def display_vacc_covid_graph(country):
     fig = px.line(data, x='date', y=["new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"])
     return fig
 
-def dvlp_index():
+def dvlp_index(indicateur):
     df = pd.read_csv(path1)
     global_DF = df[df['date'] == "2022-12-07"]
-    data = pd.DataFrame(global_DF, columns=["date", "location", "total_deaths_per_million", "human_development_index"])
+    data = pd.DataFrame(global_DF, columns=["date", "location", "total_deaths_per_million", indicateur])
     data = data.dropna()
-    fig = px.scatter(data, x="human_development_index", y=["total_deaths_per_million"], color="human_development_index")
+    fig = px.scatter(data, x=indicateur, y=["total_deaths_per_million"], color=indicateur)
     return fig
 
 #dvlp_index()

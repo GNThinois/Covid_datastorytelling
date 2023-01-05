@@ -292,13 +292,16 @@ def chomage_tab():
 
 def dvlp_tab():
     st.title("Nombre de morts en fonction de l'indice de développement.")
-    st.plotly_chart(dataloader.dvlp_index())
+    option = st.selectbox(
+    'Quel indicateur à utiliser ?',
+    ("life_expectancy", "human_development_index", "population_density", "median_age", "aged_65_older", "aged_70_older", "gdp_per_capita"))
+    st.plotly_chart(dataloader.dvlp_index(option))
     st.text("L'indice de développement humain (IDH) correspond à un indice composé calculé chaque année par le PNUD afin d'évaluer\nle niveau de développement des pays en se fondant non pas sur des données strictement économiques, \nmais sur la qualité de vie de leurs ressortissants.")
 
 def main():
     config()
     st.sidebar.subheader("Tableau de bord COVID-19")
-    menu = ["Données COVID-19","Effet des vaccins sur le COVID", "Efficacité des confinements","Taux de chomage", "Indice de développement"]
+    menu = ["Données COVID-19","Effet des vaccins sur le COVID", "Efficacité des confinements","Taux de chomage", "Autres indicateurs"]
     choice = st.sidebar.selectbox("", menu)
     if (choice == "Données COVID-19") :
         covid_data_menu()
@@ -308,7 +311,7 @@ def main():
         confine_tab()
     elif (choice == "Taux de chomage") :
         chomage_tab()
-    elif (choice == "Indice de développement"):
+    elif (choice == "Autres indicateurs"):
         dvlp_tab()
 
 
