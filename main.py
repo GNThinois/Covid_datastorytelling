@@ -277,6 +277,7 @@ def confine_tab():
     st.plotly_chart(fig, use_container_width=True)
     
 def chomage_tab():
+    st.title("Taux de chomage par pays (en %)")
     chomage = pd.read_csv(dataloader.path4,parse_dates=True)
     chomage.set_index('Country Name',inplace = True)
     chomage_t=chomage.T
