@@ -280,8 +280,10 @@ def chomage_tab():
         title="<b>A travers ce graphique nous souhaitons étudier les effects du covid-19 sur l'économie et plus précisement sur le taux de chomage</b>")
         # color_discrete_sequence=["#0083B8"] * len(covid.head(700)),
     st.plotly_chart(fig, use_container_width=True)
-    st.text("Nous pouvons conclure que le taux moyen mondial de chomage à fortement augmenté depuis les confinements consécutifs")
-    st.text("Par exemple pour des pays comme South Africa, qui n'ont pas bénificiés d'un plan de relance, ont vus leur taux de chomage explosé")
+    st.text("Nous pouvons conclure que le taux moyen mondial de chomage à fortement augmenté depuis les confinements consécutifs.")
+    st.text("Par exemple pour des pays comme South Africa, qui n'ont pas bénificiés d'un plan de relance, ont vus leur taux de chomage explosé.")
+    st.text("A l'inverse des pays comme la France et les USA, qui eux, ont bénificiés d'un plan de relance, ont vus leur taux de chomage resté constant.")
+    st.text("Cette analyse en quand même trompeuse, car le taux de chomage va augmenter dans les années à venir lorsque les plans de relance ne seront plus effectif.")
 
     # fig=px.line(chomage,x='Date_reported',y='New_cases',
     #         title="<b> lockdown and it's effect on new cases</b>",
