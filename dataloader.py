@@ -1,8 +1,10 @@
 import pandas as pd
+import plotly.express as px
 
-path1 = '../data/owid-covid-data.csv'
-path2 = '../data/vaccination-data.csv'
-path3 = '../data/WHO-COVID-19-global-data.csv'
+
+path1 = '../Covid_datastorytelling/data/owid-covid-data.csv'
+path2 = '../Covid_datastorytelling/data/vaccination-data.csv'
+path3 = '../Covid_datastorytelling/data/WHO-COVID-19-global-data.csv'
 
 def cov_vac_display(name_of_country):
     #On charge les 2 csv
@@ -28,13 +30,15 @@ def display_vacc_covid_graph(country):
     df = pd.read_csv(path1)
     country_DF = df[df['location'] == country]
     data = pd.DataFrame(country_DF, columns=["date", "new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"]).fillna(0)
-    data.plot(x="date", y=["new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"],
-        kind="line", figsize=(10, 10), title=country)
+    #data.plot(x="date", y=["new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"],
+    #    kind="line", figsize=(10, 10), title=country)
     print(country)
+    fig = px.line(data, x='date', y=["new_cases_per_million", "new_vaccinations_smoothed_per_million", "new_deaths"])
+    return fig
 
 
 #x = input('Pays à afficher:')
 #x = 'France'
-#display_vacc_covid_graph(x)
+display_vacc_covid_graph("France")
 
 
