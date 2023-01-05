@@ -196,6 +196,7 @@ def vacc_tab():
     st.plotly_chart(dataloader.display_vacc_covid_graph(option))
     st.text("Even though most country implemented some type of vaccination, the effect seems to vary from one to another.")
     st.text("source : OWID (Our World In Data)")
+    st.plotly_chart(dataloader.dvlp_index)
 
 def confine_tab():
     st.title("l'impact de confinement")
