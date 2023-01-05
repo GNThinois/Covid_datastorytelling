@@ -272,12 +272,26 @@ def confine_tab():
 
     st.plotly_chart(fig, use_container_width=True)
     
+def chomage_tab():
+    chomage = pd.read_csv(dataloader.path4,parse_dates=True)
+    chomage.set_index('Country Name',inplace = True)
+    chomage_t=chomage.T
+    fig=px.line( chomage_t[["United Kingdom", "France", "India","South Africa"]])
+        # title="<b> taux de chomage </b>",)
+        # color_discrete_sequence=["#0083B8"] * len(covid.head(700)),
+    st.plotly_chart(fig, use_container_width=True)
+
+    # fig=px.line(chomage,x='Date_reported',y='New_cases',
+    #         title="<b> lockdown and it's effect on new cases</b>",
+    #         color_discrete_sequence=["#0083B8"] * len(chomage),
+    #     )
+
 
 
 def main():
     config()
     st.sidebar.subheader("COVID-19 DASHBOARD")
-    menu = ["COVID-19 DATA","Impact of vaccination", "Effectiveness of confining"]
+    menu = ["COVID-19 DATA","Impact of vaccination", "Effectiveness of confining","Taux de chomage"]
     choice = st.sidebar.selectbox("", menu)
     if (choice == "COVID-19 DATA") :
         covid_data_menu()
@@ -285,6 +299,8 @@ def main():
         vacc_tab() 
     elif (choice == "Effectiveness of confining") :
         confine_tab()
+    elif (choice == "Taux de chomage") :
+        chomage_tab()
 
 
 if __name__ == '__main__':

@@ -5,6 +5,7 @@ import plotly.express as px
 path1 = '../Covid_datastorytelling/data/owid-covid-data.csv'
 path2 = '../Covid_datastorytelling/data/vaccination-data.csv'
 path3 = '../Covid_datastorytelling/data/WHO-COVID-19-global-data.csv'
+path4 = '../Covid_datastorytelling/data/unemployment analysis.csv'
 
 def cov_vac_display(name_of_country):
     #On charge les 2 csv
