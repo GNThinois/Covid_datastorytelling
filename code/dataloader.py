@@ -3,6 +3,7 @@ import pandas as pd
 path1 = '../data/owid-covid-data.csv'
 path2 = '../data/vaccination-data.csv'
 path3 = '../data/WHO-COVID-19-global-data.csv'
+path4 = '../content/drive/MyDrive/unemployment analysis.csv'
 
 def cov_vac_display(name_of_country):
     #On charge les 2 csv
