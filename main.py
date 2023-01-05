@@ -183,6 +183,7 @@ def covid_data_menu():
             st.markdown(
                 f"""</br> Reference for Tips : <a href="https://internationalmedicalcorps.org/emergency-response/covid-19/coronavirus-prevention-tips/">IMC</a>""",
                 unsafe_allow_html=True)
+        st.text("source : https://disease.sh/v3/covid-19/countries")
     except ConnectionError as e:
         st.error("There is a connection error please retry later 😥")
 
@@ -193,6 +194,8 @@ def vacc_tab():
     'What country would you like to display ?',
     ("United States", "France", "Brazil", "Japan", "Cameroon", "China"))
     st.plotly_chart(dataloader.display_vacc_covid_graph(option))
+    st.text("Even though most country implemented some type of vaccination, the effect seems to vary from one to another.")
+    st.text("source : OWID (Our World In Data)")
 
 def confine_tab():
     st.title("Effectiveness of confining")
